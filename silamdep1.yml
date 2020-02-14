@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: silamdepday5
+  name: silamdepday5
+  namespace: silambarasan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silamdepday5
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: silamdepday5
+    spec:
+      containers:
+      - image: silamdevopstraining/devopsweb2:v1
+        name: silameyappday5
+        imagePullPolicy: Always
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: silamdepsvc1
+  name: silamdepsvc1
+  namespace: silambarasan
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: silamdepday5
+  type: NodePort
+status:
+  loadBalancer: {}
